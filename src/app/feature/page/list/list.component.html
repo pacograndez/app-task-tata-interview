@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-end">
+      <div class="row align-items-center justify-content-end">
+        <div class="col-md-auto col-5">
+          <h5>{{ user.username }}</h5>
+          <small class="d-none d-md-block">{{ user.role }}</small>
+        </div>
+        <div class="col-md-auto col-3">
+          <button class="btn btn-outline-secondary" (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <h3>Lista de tareas</h3>
+    </div>
+    <div class="col-md-12 my-5">
+      <form [formGroup]="fTask" (ngSubmit)="submit()">
+        <div class="row row-cols-md-auto gy-3 align-items-center">
+          <label for="colFormLabel" class="col-md-2 col-form-label"
+            >Tarea:
+          </label>
+          <div class="col-12 d-none">
+            <input type="text" class="form-control" formControlName="uuid" />
+          </div>
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Tarea"
+              aria-label="First name"
+              formControlName="name"
+              appPattern
+              [customPatter]="'alphaNumeric'"
+            />
+          </div>
+          <div class="col-md-6 text-end text-md-start">
+            <button type="submit" class="btn btn-success">Agregar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks">
+              <td>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="checkboxNoLabel"
+                  value=""
+                  aria-label="..."
+                  [checked]="task.check"
+                  (change)="task.check = !task.check"
+                />
+              </td>
+              <td>{{ task.name }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm"
+                  [ngClass]="{ 'd-none': task.check }"
+                  (click)="deleteTask(task)"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row vh-100 align-items-center">
+    <div class="col-md-12">
+      <h3>Login</h3>
+      <form [formGroup]="fLogin" (ngSubmit)="submit()" class="my-5">
+        <div class="row g-3 align-items-center">
+          <div class="col-md-6">
+            <div class="row g-3">
+              <div class="col-md-12">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Usuario"
+                  aria-label="First name"
+                  formControlName="username"
+                />
+              </div>
+              <div class="col-md-12">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Contraseña"
+                  aria-label="Last name"
+                  formControlName="password"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 text-md-center">
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="!fLogin.valid"
+            >
+              Ingresar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
